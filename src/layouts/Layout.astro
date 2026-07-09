@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+</head>
+<body>
+  <style>
+    :root {
+      --navy: #2B3682;
+      --blue: #0369B2;
+      --ink: #12142B;
+      --paper: #FAFAF8;
+      --line: #E4E3DD;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, sans-serif;
+    }
+    header {
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    nav a { margin-left: 20px; font-size: 14px; color: var(--ink); text-decoration: none; }
+    main { max-width: 900px; margin: 0 auto; padding: 48px 40px; }
+    footer { text-align: center; padding: 32px; font-size: 12px; color: #8C8B80; }
+  </style>
+  <header>
+    <a href="/">BiomEdit — Starbriq workspace</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/notes">Notes</a>
+    </nav>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer>Internal working site — not for external distribution.</footer>
+</body>
+</html>
