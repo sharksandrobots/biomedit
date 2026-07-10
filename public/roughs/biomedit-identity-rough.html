@@ -138,6 +138,76 @@
   .ui-btn-outline{background:transparent;border-radius:4px;padding:11px 23px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:default;background:#fff;}
   .ui-link{font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px;}
 
+  /* pipeline timeline */
+  .ramp-cool{--r100:var(--cool-100);--r200:var(--cool-200);--r300:var(--cool-300);--r700:var(--cool-700);--r900:var(--cool-900);}
+  .ramp-true{--r100:var(--true-100);--r200:var(--true-200);--r300:var(--true-300);--r700:var(--true-700);--r900:var(--true-900);}
+  .ramp-warm{--r100:var(--warm-100);--r200:var(--warm-200);--r300:var(--warm-300);--r700:var(--warm-700);--r900:var(--warm-900);}
+
+  .pipeline-example{border:1px solid var(--r300);border-radius:8px;overflow:hidden;margin-bottom:28px;background:#fff;}
+  .pipeline-example:last-child{margin-bottom:0;}
+  .pipeline-header{padding:24px 24px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;background:var(--r100);}
+  .pipeline-eyebrow{font-family:var(--setfont);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);font-weight:700;margin:0 0 4px;}
+  .pipeline-title{font-family:var(--setfont);font-weight:700;font-size:17px;margin:0;color:#000;}
+  .pipeline-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+  input.tab-input{display:none;}
+  .pipeline-tab{font-family:var(--setfont);padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;color:var(--r700);background:#fff;border:1px solid var(--r300);user-select:none;}
+  .pipeline-columns{display:flex;gap:1px;background:var(--r200);overflow-x:auto;}
+  .pipeline-col{background:var(--r100);padding:16px 14px;min-width:170px;flex:1 0 170px;display:flex;flex-direction:column;gap:8px;}
+  .stage-eyebrow{font-family:var(--setfont);font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--r700);opacity:0.65;margin:0;}
+  .stage-eyebrow.fraunces-experiment{font-family:'Fraunces',serif;font-style:italic;font-weight:500;text-transform:none;letter-spacing:0;font-size:12px;opacity:0.8;}
+  .pipeline-stage-head{font-family:var(--setfont);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;color:var(--r700);margin:2px 0 4px;line-height:1.3;min-height:28px;}
+  .pipeline-card{background:#fff;border-radius:6px;border-left:3px solid transparent;overflow:hidden;}
+  .pipeline-card summary{list-style:none;cursor:pointer;padding:10px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .pipeline-card summary::-webkit-details-marker{display:none;}
+  .pipeline-card summary::marker{content:"";}
+  .card-main{display:flex;flex-direction:column;}
+  .pipeline-card .code{font-family:var(--setfont);font-weight:700;font-size:13px;color:#000;display:block;}
+  .pipeline-card .focus{font-size:11px;color:var(--r700);margin-top:2px;display:block;}
+  .pipeline-card .chevron{flex-shrink:0;margin-top:3px;color:var(--r700);transition:transform 0.18s ease;}
+  .pipeline-card[open] .chevron{transform:rotate(180deg);}
+  .card-detail{padding:0 12px 14px;}
+  .card-detail p{font-family:var(--setfont);font-size:12px;line-height:1.6;color:var(--r700);margin:0 0 8px;}
+  .card-detail-link{font-family:var(--setfont);font-size:12px;font-weight:700;color:#000;text-decoration:underline;text-underline-offset:2px;}
+  .cat-foundational{border-left-color:var(--teal);}
+  .cat-investigational{border-left-color:var(--navy);}
+  .cat-breakthrough{border-left-color:var(--orange);}
+
+  /* variant: subtle background tint, no left border */
+  .cards-bg .pipeline-card{border-left:none;}
+  .cards-bg .cat-foundational{background:rgba(3,105,178,0.09);}
+  .cards-bg .cat-investigational{background:rgba(43,54,130,0.09);}
+  .cards-bg .cat-breakthrough{background:rgba(218,106,42,0.09);}
+
+  /* variant: squared corners, 3px bottom border */
+  .cards-square .pipeline-card{border-left:none;border-radius:0;border-bottom:3px solid transparent;}
+  .cards-square .cat-foundational{border-bottom-color:var(--teal);}
+  .cards-square .cat-investigational{border-bottom-color:var(--navy);}
+  .cards-square .cat-breakthrough{border-bottom-color:var(--orange);}
+
+  .pipeline-example:has(#cool-found:checked) .pipeline-card:not(.cat-foundational){display:none;}
+  .pipeline-example:has(#cool-invest:checked) .pipeline-card:not(.cat-investigational){display:none;}
+  .pipeline-example:has(#cool-break:checked) .pipeline-card:not(.cat-breakthrough){display:none;}
+  .pipeline-example:has(#cool-all:checked) label[for="cool-all"],
+  .pipeline-example:has(#cool-found:checked) label[for="cool-found"],
+  .pipeline-example:has(#cool-invest:checked) label[for="cool-invest"],
+  .pipeline-example:has(#cool-break:checked) label[for="cool-break"]{background:#000;color:#fff;border-color:#000;}
+
+  .pipeline-example:has(#true-found:checked) .pipeline-card:not(.cat-foundational){display:none;}
+  .pipeline-example:has(#true-invest:checked) .pipeline-card:not(.cat-investigational){display:none;}
+  .pipeline-example:has(#true-break:checked) .pipeline-card:not(.cat-breakthrough){display:none;}
+  .pipeline-example:has(#true-all:checked) label[for="true-all"],
+  .pipeline-example:has(#true-found:checked) label[for="true-found"],
+  .pipeline-example:has(#true-invest:checked) label[for="true-invest"],
+  .pipeline-example:has(#true-break:checked) label[for="true-break"]{background:#000;color:#fff;border-color:#000;}
+
+  .pipeline-example:has(#warm-found:checked) .pipeline-card:not(.cat-foundational){display:none;}
+  .pipeline-example:has(#warm-invest:checked) .pipeline-card:not(.cat-investigational){display:none;}
+  .pipeline-example:has(#warm-break:checked) .pipeline-card:not(.cat-breakthrough){display:none;}
+  .pipeline-example:has(#warm-all:checked) label[for="warm-all"],
+  .pipeline-example:has(#warm-found:checked) label[for="warm-found"],
+  .pipeline-example:has(#warm-invest:checked) label[for="warm-invest"],
+  .pipeline-example:has(#warm-break:checked) label[for="warm-break"]{background:#000;color:#fff;border-color:#000;}
+
   @media (max-width:900px){
     .color-block,.pair-grid,.para-grid,.ui-grid{grid-template-columns:1fr;}
     .ramp-strip9{grid-template-columns:repeat(5,1fr);}
@@ -464,6 +534,74 @@
             <button class="ui-btn-outline" style="border:1.5px solid var(--orange);color:var(--orange);">See the platform</button>
             <a class="ui-link" style="color:var(--orange);">Read the case study</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">5</span><h2>Pipeline Timeline</h2></div>
+      <p class="section-sub">A revised take on the live site's pipeline page. The three project categories now share one row instead of three, filtered by tabs. Product codes and stage placement below are illustrative, for layout purposes only — not a representation of actual regulatory status.</p>
+
+      <div class="subsection">
+        <p class="sub-label">5.1 — Cool neutrals, DM Sans</p>
+        <div class="pipeline-example ramp-cool set-dm">
+          <input class="tab-input" type="radio" name="tabs-cool" id="cool-all" checked>
+          <input class="tab-input" type="radio" name="tabs-cool" id="cool-found">
+          <input class="tab-input" type="radio" name="tabs-cool" id="cool-invest">
+          <input class="tab-input" type="radio" name="tabs-cool" id="cool-break">
+          <div class="pipeline-header">
+            <div><p class="pipeline-eyebrow">Pipeline</p><p class="pipeline-title">Our Pipeline</p></div>
+            <div class="pipeline-tabs">
+              <label class="pipeline-tab" for="cool-all">All</label>
+              <label class="pipeline-tab" for="cool-found">Foundational</label>
+              <label class="pipeline-tab" for="cool-invest">Investigational</label>
+              <label class="pipeline-tab" for="cool-break">Breakthrough</label>
+            </div>
+          </div>
+          <div class="pipeline-columns"><div class="pipeline-col"><p class="stage-eyebrow">Stage 1</p><p class="pipeline-stage-head">Discovery / Design</p><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-117</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Exploratory research into non-antibiotic pathways for resistant-pathogen control, building on lessons from the platform's lead antimicrobial programs.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-17</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>A next-generation approach to metabolic health, building on early signals from the platform's foundational research.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 2</p><p class="pipeline-stage-head">Candidate Optimization</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-07</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early trial data testing whether the platform's approach can reduce reliance on antibiotics for resistant-pathogen control.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-102</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Initial trials evaluating impact on metabolic health markers tied to feed conversion efficiency in production animals.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-106</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Advancing through pivotal studies to confirm gut health outcomes at the scale required for commercial production settings.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-105</span><span class="focus">Methane Reduction</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Tuning a microbiome-based approach to enteric methane reduction in cattle, balancing emissions impact against feed efficiency.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 3</p><p class="pipeline-stage-head">Proof of Concept</p></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 4</p><p class="pipeline-stage-head">Pivotal Studies</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-01</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Refining strain performance to improve gut barrier integrity and nutrient absorption ahead of formal proof-of-concept trials.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-101</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>The platform's most advanced candidate, progressing through final regulatory review ahead of commercial launch.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 5</p><p class="pipeline-stage-head">Regulatory Approval / Launch Readiness</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-02</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early-stage work identifying microbial candidates that can neutralize pathogen-associated toxins before symptoms take hold in the herd or flock.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 6</p><p class="pipeline-stage-head">Commercial</p></div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="sub-label">5.2 — True neutrals, PT Sans</p>
+        <p class="sub-desc">Stage eyebrows here are set in small Fraunces italic instead of PT Sans, as a test of whether the serif works at a quieter, more utilitarian size — not just in pull quotes and captions.</p>
+        <div class="pipeline-example ramp-true set-pt cards-bg">
+          <input class="tab-input" type="radio" name="tabs-true" id="true-all" checked>
+          <input class="tab-input" type="radio" name="tabs-true" id="true-found">
+          <input class="tab-input" type="radio" name="tabs-true" id="true-invest">
+          <input class="tab-input" type="radio" name="tabs-true" id="true-break">
+          <div class="pipeline-header">
+            <div><p class="pipeline-eyebrow">Pipeline</p><p class="pipeline-title">Our Pipeline</p></div>
+            <div class="pipeline-tabs">
+              <label class="pipeline-tab" for="true-all">All</label>
+              <label class="pipeline-tab" for="true-found">Foundational</label>
+              <label class="pipeline-tab" for="true-invest">Investigational</label>
+              <label class="pipeline-tab" for="true-break">Breakthrough</label>
+            </div>
+          </div>
+          <div class="pipeline-columns"><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 1</p><p class="pipeline-stage-head">Discovery / Design</p><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-117</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Exploratory research into non-antibiotic pathways for resistant-pathogen control, building on lessons from the platform's lead antimicrobial programs.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-17</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>A next-generation approach to metabolic health, building on early signals from the platform's foundational research.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 2</p><p class="pipeline-stage-head">Candidate Optimization</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-07</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early trial data testing whether the platform's approach can reduce reliance on antibiotics for resistant-pathogen control.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-102</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Initial trials evaluating impact on metabolic health markers tied to feed conversion efficiency in production animals.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-106</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Advancing through pivotal studies to confirm gut health outcomes at the scale required for commercial production settings.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-105</span><span class="focus">Methane Reduction</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Tuning a microbiome-based approach to enteric methane reduction in cattle, balancing emissions impact against feed efficiency.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 3</p><p class="pipeline-stage-head">Proof of Concept</p></div><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 4</p><p class="pipeline-stage-head">Pivotal Studies</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-01</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Refining strain performance to improve gut barrier integrity and nutrient absorption ahead of formal proof-of-concept trials.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-101</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>The platform's most advanced candidate, progressing through final regulatory review ahead of commercial launch.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 5</p><p class="pipeline-stage-head">Regulatory Approval / Launch Readiness</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-02</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early-stage work identifying microbial candidates that can neutralize pathogen-associated toxins before symptoms take hold in the herd or flock.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow fraunces-experiment">Stage 6</p><p class="pipeline-stage-head">Commercial</p></div></div>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-bottom:0;">
+        <p class="sub-label">5.3 — Warm neutrals, Montserrat</p>
+        <div class="pipeline-example ramp-warm set-mont cards-square">
+          <input class="tab-input" type="radio" name="tabs-warm" id="warm-all" checked>
+          <input class="tab-input" type="radio" name="tabs-warm" id="warm-found">
+          <input class="tab-input" type="radio" name="tabs-warm" id="warm-invest">
+          <input class="tab-input" type="radio" name="tabs-warm" id="warm-break">
+          <div class="pipeline-header">
+            <div><p class="pipeline-eyebrow">Pipeline</p><p class="pipeline-title">Our Pipeline</p></div>
+            <div class="pipeline-tabs">
+              <label class="pipeline-tab" for="warm-all">All</label>
+              <label class="pipeline-tab" for="warm-found">Foundational</label>
+              <label class="pipeline-tab" for="warm-invest">Investigational</label>
+              <label class="pipeline-tab" for="warm-break">Breakthrough</label>
+            </div>
+          </div>
+          <div class="pipeline-columns"><div class="pipeline-col"><p class="stage-eyebrow">Stage 1</p><p class="pipeline-stage-head">Discovery / Design</p><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-117</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Exploratory research into non-antibiotic pathways for resistant-pathogen control, building on lessons from the platform's lead antimicrobial programs.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-17</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>A next-generation approach to metabolic health, building on early signals from the platform's foundational research.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 2</p><p class="pipeline-stage-head">Candidate Optimization</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-07</span><span class="focus">AMR</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early trial data testing whether the platform's approach can reduce reliance on antibiotics for resistant-pathogen control.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-102</span><span class="focus">Metabolic Disease</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Initial trials evaluating impact on metabolic health markers tied to feed conversion efficiency in production animals.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-106</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Advancing through pivotal studies to confirm gut health outcomes at the scale required for commercial production settings.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-breakthrough"><summary><span class="card-main"><span class="code">BE-105</span><span class="focus">Methane Reduction</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Tuning a microbiome-based approach to enteric methane reduction in cattle, balancing emissions impact against feed efficiency.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 3</p><p class="pipeline-stage-head">Proof of Concept</p></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 4</p><p class="pipeline-stage-head">Pivotal Studies</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-01</span><span class="focus">Gut Health</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Refining strain performance to improve gut barrier integrity and nutrient absorption ahead of formal proof-of-concept trials.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details><details class="pipeline-card cat-investigational"><summary><span class="card-main"><span class="code">BE-101</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>The platform's most advanced candidate, progressing through final regulatory review ahead of commercial launch.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 5</p><p class="pipeline-stage-head">Regulatory Approval / Launch Readiness</p><details class="pipeline-card cat-foundational"><summary><span class="card-main"><span class="code">BE-02</span><span class="focus">Pathogen Protection</span></span><svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="card-detail"><p>Early-stage work identifying microbial candidates that can neutralize pathogen-associated toxins before symptoms take hold in the herd or flock.</p><a href="#" class="card-detail-link">Learn more &rarr;</a></div></details></div><div class="pipeline-col"><p class="stage-eyebrow">Stage 6</p><p class="pipeline-stage-head">Commercial</p></div></div>
         </div>
       </div>
     </div>
