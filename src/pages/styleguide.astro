@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+
+const brandColors = [
+  { name: 'Deep Blue', color: 'navy', hex: '#2B3682', note: 'Locked to logo · designated link color' },
+  { name: 'Teal', color: 'teal', hex: '#0369B2', note: 'Locked to logo' },
+  { name: 'Ember Orange', color: 'orange', hex: '#DA6A2A', note: 'Confirmed complementary accent' },
+  { name: 'Green', color: 'green', hex: '#16A34A', note: 'Confirmed — role TBD' },
+  { name: 'Amber', color: 'amber', hex: '#F59E0B', note: 'Confirmed — role TBD' },
+];
+
+const neutralRamp = [
+  ['100', '#F1F3F6'], ['200', '#E2E5EA'], ['300', '#CBD0D9'], ['400', '#AAB1BE'],
+  ['500', '#868D9E'], ['600', '#666D7E'], ['700', '#4A5161'], ['800', '#333846'], ['900', '#1C1F28'],
+];
+
+const typeScale = [
+  ['Display / H1', 90], ['H2', 67], ['H3', 51], ['H4', 38], ['H5', 28], ['H6 / Body Large', 21],
+];
+---
+<Layout title="BiomEdit — Styleguide">
+  <main style="max-width:1000px;margin:0 auto;padding:60px 40px;">
+
+    <p class="overline">Living reference</p>
+    <h1>Styleguide</h1>
+    <p>Pulled from <code>tokens.css</code> and the real <code>Button</code> / <code>Badge</code> components — not static markup. If a token or component changes, update it in one place and this page reflects it.</p>
+
+    <h2 style="margin-top:56px;">Brand Colors</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+      {brandColors.map((c) => (
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style={`width:56px;height:56px;border-radius:4px;background:var(--color-${c.color});flex-shrink:0;`}></div>
+          <div>
+            <div class="data-label">{c.name}</div>
+            <div class="meta">{c.hex} — {c.note}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 style="margin-top:56px;">Neutral Ramp — Cool</h2>
+    <div style="display:grid;grid-template-columns:repeat(9,1fr);border-radius:6px;overflow:hidden;border:1px solid var(--border-color);margin-top:20px;">
+      {neutralRamp.map(([step, hex]) => (
+        <div style={`aspect-ratio:0.9;background:${hex};display:flex;align-items:flex-end;padding:8px;font-size:10px;font-weight:500;color:${parseInt(step) >= 500 ? '#fff' : '#000'};`}>
+          {step}
+        </div>
+      ))}
+    </div>
+
+    <h2 style="margin-top:56px;">Type Scale</h2>
+    <div style="margin-top:20px;">
+      {typeScale.map(([label, size]) => (
+        <div style="display:flex;align-items:baseline;gap:24px;border-bottom:1px solid var(--border-color);padding:16px 0;">
+          <div style="width:150px;flex-shrink:0;font-size:12px;color:var(--text-tertiary);">{label} — {size}px</div>
+          <p style={`font-size:${size}px;font-weight:700;margin:0;`}>Engineered biology</p>
+        </div>
+      ))}
+    </div>
+
+    <h2 style="margin-top:56px;">Buttons</h2>
+    <p class="meta" style="margin-bottom:16px;">Deep Blue is the designated link color. All five colors support filled and outline.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <Button color="navy" variant="filled">Filled Navy</Button>
+      <Button color="navy" variant="outline">Outline Navy</Button>
+      <Button color="teal" variant="filled">Filled Teal</Button>
+      <Button color="teal" variant="outline">Outline Teal</Button>
+      <Button color="orange" variant="filled">Filled Orange</Button>
+      <Button color="orange" variant="outline">Outline Orange</Button>
+      <Button color="green" variant="filled">Filled Green</Button>
+      <Button color="green" variant="outline">Outline Green</Button>
+      <Button color="amber" variant="filled">Filled Amber</Button>
+      <Button color="amber" variant="outline">Outline Amber</Button>
+    </div>
+
+    <h2 style="margin-top:56px;">Badges</h2>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <Badge>Draft</Badge>
+      <Badge color="teal">Infectious Disease</Badge>
+      <Badge color="navy">Chronic Disease</Badge>
+      <Badge color="orange">Sustainability</Badge>
+      <Badge color="green">Active</Badge>
+      <Badge color="amber">Pending</Badge>
+    </div>
+
+    <h2 style="margin-top:56px;">Table</h2>
+    <div class="card" style="margin-top:20px;padding:0;overflow:hidden;">
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Focus</th><th>Category</th><th>Stage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>BE-101</td><td>Pathogen Protection</td><td>Chronic Disease</td><td>Regulatory Approval</td></tr>
+          <tr><td>BE-07</td><td>AMR</td><td>Infectious Disease</td><td>Candidate Optimization</td></tr>
+          <tr><td>BE-105</td><td>Methane Reduction</td><td>Sustainability</td><td>Candidate Optimization</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 style="margin-top:56px;">Form Styles</h2>
+    <p class="meta" style="margin-bottom:16px;">No dedicated error/danger color exists yet — Amber stands in below.</p>
+    <div style="display:flex;gap:32px;flex-wrap:wrap;">
+      <div class="form-group">
+        <label class="form-label">Work email</label>
+        <input class="form-input" type="text" placeholder="you@company.com" />
+        <p class="form-helper">We'll only use this to send the deck.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company name</label>
+        <input class="form-input has-error" type="text" value="Acme" />
+        <p class="form-error-text">Please enter your full company name.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label is-disabled">Referral code</label>
+        <input class="form-input" type="text" placeholder="Optional" disabled />
+      </div>
+    </div>
+
+  </main>
+</Layout>

@@ -1,0 +1,49 @@
+---
+// Usage:
+// <Button color="navy" variant="filled" href="/platform">See the platform</Button>
+// <Button color="teal" variant="outline">Request the deck</Button>
+
+interface Props {
+  color?: 'navy' | 'teal' | 'orange' | 'green' | 'amber';
+  variant?: 'filled' | 'outline';
+  href?: string;
+}
+
+const { color = 'navy', variant = 'filled', href } = Astro.props;
+const Tag = href ? 'a' : 'button';
+
+const colorVar = `var(--color-${color})`;
+---
+<Tag
+  href={href}
+  class={`btn btn-${variant}`}
+  style={
+    variant === 'filled'
+      ? `background:${colorVar};`
+      : `border-color:${colorVar};color:${colorVar};`
+  }
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+  }
+  .btn-filled {
+    color: #fff;
+    border: none;
+  }
+  .btn-outline {
+    background: var(--bg-secondary);
+    padding: 10.5px 22.5px; /* compensate for the 1.5px border so outline buttons match filled button height */
+  }
+</style>

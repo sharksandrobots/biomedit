@@ -1,0 +1,40 @@
+---
+// Usage:
+// <Badge color="teal">Infectious Disease</Badge>
+// <Badge>Draft</Badge>  (defaults to neutral)
+
+interface Props {
+  color?: 'neutral' | 'navy' | 'teal' | 'orange' | 'green' | 'amber';
+}
+
+const { color = 'neutral' } = Astro.props;
+
+const colorMap: Record<string, string> = {
+  navy: '43,54,130',
+  teal: '3,105,178',
+  orange: '218,106,42',
+  green: '22,163,74',
+  amber: '245,158,11',
+};
+
+const isNeutral = color === 'neutral';
+const bg = isNeutral ? 'var(--bg-tertiary)' : `rgba(${colorMap[color]},0.12)`;
+const textColor = isNeutral ? 'var(--text-secondary)' : `var(--color-${color})`;
+---
+<span class="badge" style={`background:${bg};color:${textColor};`}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+// Site header for public-facing pages: logo left, nav right, 2-line hamburger on mobile.
+// No JS required — mobile menu toggle is a pure CSS checkbox pattern (same technique
+// used for the Pipeline filter tabs in the identity rough).
+
+const navItems = [
+  { label: 'Company', href: '/company' },
+  { label: 'Science', href: '/science' },
+  { label: 'Pipeline', href: '/pipeline' },
+  { label: 'Products', href: '/products' },
+  { label: 'Investors & Partners', href: '/investors-partners' },
+  { label: 'News', href: '/news' },
+];
+---
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo" aria-label="BiomEdit home">
+      <svg viewBox="0 0 164 40"><use href="#biomedit-logo" xlink:href="#biomedit-logo"></use></svg>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" hidden />
+    <label for="nav-toggle" class="nav-toggle-btn" aria-label="Toggle menu">
+      <span class="nav-toggle-line"></span>
+      <span class="nav-toggle-line"></span>
+    </label>
+
+    <nav class="site-nav" aria-label="Primary">
+      {navItems.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+  .site-header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-logo svg { height: 24px; width: auto; display: block; }
+
+  .site-nav { display: flex; align-items: center; gap: 32px; }
+  .site-nav a {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .site-nav a:hover { color: var(--link-color); }
+
+  .nav-toggle-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .nav-toggle-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    transition: transform 0.2s ease;
+  }
+
+  @media (max-width: 900px) {
+    .nav-toggle-btn { display: flex; }
+
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 24px 40px;
+    }
+
+    .nav-toggle-input:checked ~ .site-nav { display: flex; }
+    .nav-toggle-input:checked ~ .nav-toggle-btn .nav-toggle-line:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    .nav-toggle-input:checked ~ .nav-toggle-btn .nav-toggle-line:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+  }
+</style>

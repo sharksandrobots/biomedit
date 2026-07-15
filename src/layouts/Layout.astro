@@ -1,49 +1,46 @@
 ---
+import '../styles/tokens.css';
+
 interface Props {
   title: string;
+  theme?: 'light' | 'dark'; // defaults to light; pass 'dark' to preview dark theme on a given page
 }
-const { title } = Astro.props;
+const { title, theme = 'light' } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme={theme}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
-</head>
-<body>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    :root {
-      --navy: #2B3682;
-      --blue: #0369B2;
-      --ink: #12142B;
-      --paper: #FAFAF8;
-      --line: #E4E3DD;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: system-ui, sans-serif;
-    }
     header {
       padding: 24px 40px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    header a { color: var(--navy); text-decoration: none; font-weight: 600; }
-    nav a { margin-left: 20px; font-size: 14px; color: var(--ink); text-decoration: none; }
+    header a { color: var(--link-color); text-decoration: none; font-weight: 600; }
+    nav a { margin-left: 20px; font-size: 14px; color: var(--text-primary); text-decoration: none; }
     main { max-width: 900px; margin: 0 auto; padding: 48px 40px; }
-    footer { text-align: center; padding: 32px; font-size: 12px; color: #8C8B80; }
+    footer { text-align: center; padding: 32px; font-size: 12px; color: var(--text-tertiary); }
   </style>
+</head>
+<body>
   <header>
     <a href="/">BiomEdit — Starbriq workspace</a>
     <nav>
       <a href="/">Home</a>
       <a href="/notes">Notes</a>
+      <a href="/styleguide">Styleguide</a>
+      <a href="/home" target="_blank" rel="noopener">Site in progress</a>
     </nav>
   </header>
   <main>

@@ -1,0 +1,107 @@
+---
+// Structural match to the current live footer: legal links + social row, divider,
+// logo + copyright row. Dark background regardless of page theme (a dark footer
+// band is independent of the site-wide light/dark theme decision, which is still open).
+
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Legal', href: '/legal' },
+  { label: 'Cookies', href: '/cookies' },
+  { label: 'Consent Preferences', href: '/consent-preferences' },
+];
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-top">
+      <div class="footer-legal-links">
+        {legalLinks.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </div>
+      <div class="footer-social">
+        <span>Follow on LinkedIn</span>
+        <a href="https://www.linkedin.com/company/biomedit" aria-label="BiomEdit on LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <a href="/" class="footer-logo" aria-label="BiomEdit home">
+        <svg viewBox="0 0 96 24"><use href="#biomedit-logo-inverse" xlink:href="#biomedit-logo-inverse"></use></svg>
+      </a>
+      <span class="footer-copyright">Copyright {year}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--cool-900);
+    color: var(--cool-100);
+    padding: 48px 0 32px;
+  }
+  .site-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-legal-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-legal-links a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cool-100);
+    text-decoration: none;
+  }
+  .footer-legal-links a:hover { color: var(--color-navy-dark); }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .footer-social a {
+    color: var(--cool-100);
+    display: flex;
+    align-items: center;
+  }
+  .footer-social a:hover { color: var(--color-navy-dark); }
+
+  .footer-divider {
+    border-top: 1px solid var(--cool-700);
+    margin: 32px 0 24px;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo svg {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .footer-copyright { font-size: 13px; color: var(--cool-300); }
+</style>

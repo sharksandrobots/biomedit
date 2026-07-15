@@ -1,0 +1,165 @@
+/* ===================================================================
+   BiomEdit design tokens
+   Source of truth: biomedit-styleguide-v1.html
+   =================================================================== */
+
+:root {
+  /* brand colors — light mode */
+  --color-navy: #2B3682;
+  --color-teal: #0369B2;
+  --color-orange: #DA6A2A;
+  --color-green: #16A34A;
+  --color-amber: #F59E0B;
+
+  /* brand colors — dark mode variants */
+  --color-navy-dark: #5A94F2;
+  --color-teal-dark: #74ADD5;
+  --color-orange-dark: #EBAD8A;
+  --color-green-dark: #7FCC9B;
+  --color-amber-dark: #FACA79;
+
+  /* neutral ramp — cool (confirmed direction) */
+  --cool-100: #F1F3F6;
+  --cool-200: #E2E5EA;
+  --cool-300: #CBD0D9;
+  --cool-400: #AAB1BE;
+  --cool-500: #868D9E;
+  --cool-600: #666D7E;
+  --cool-700: #4A5161;
+  --cool-800: #333846;
+  --cool-900: #1C1F28;
+
+  /* semantic tokens — light theme (default) */
+  --bg-primary: var(--cool-100);
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: var(--cool-200);
+  --text-primary: var(--cool-900);
+  --text-secondary: var(--cool-700);
+  --text-tertiary: var(--cool-500);
+  --border-color: var(--cool-200);
+  --link-color: var(--color-navy);
+
+  /* type scale — 1.333 ratio, base 16px */
+  --text-display: 90px;
+  --text-h2: 67px;
+  --text-h3: 51px;
+  --text-h4: 38px;
+  --text-h5: 28px;
+  --text-h6: 21px;
+  --text-body: 16px;
+  --text-caption: 12px;
+}
+
+/* dark theme — apply via <html data-theme="dark"> */
+[data-theme="dark"] {
+  --bg-primary: var(--cool-900);
+  --bg-secondary: var(--cool-800);
+  --bg-tertiary: var(--cool-700);
+  --text-primary: var(--cool-100);
+  --text-secondary: var(--cool-300);
+  --text-tertiary: var(--cool-500);
+  --border-color: var(--cool-700);
+  --link-color: var(--color-navy-dark);
+}
+
+/* ===================================================================
+   Base element styles
+   =================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'PT Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5em;
+  line-height: 1.15;
+}
+h1 { font-size: var(--text-h2); } /* h1 uses H2 scale step by default — reserve --text-display for hero/marketing use */
+h2 { font-size: var(--text-h3); }
+h3 { font-size: var(--text-h4); }
+h4 { font-size: var(--text-h5); }
+h5 { font-size: var(--text-h6); }
+h6 { font-size: var(--text-body); text-transform: uppercase; letter-spacing: 0.04em; }
+
+p { font-size: var(--text-body); line-height: 1.75; color: var(--text-primary); margin: 0 0 1em; }
+
+a { color: var(--link-color); text-decoration: underline; text-underline-offset: 3px; }
+
+blockquote {
+  margin: 1.5em 0;
+  padding: 0.25em 0 0.25em 1.25em;
+  border-left: 3px solid var(--color-teal);
+  font-style: italic;
+}
+blockquote p { font-size: 19px; line-height: 1.4; color: var(--text-primary); margin: 0 0 0.5em; }
+blockquote cite { font-size: 11px; color: var(--text-tertiary); font-style: normal; }
+
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+td {
+  font-size: 14px;
+  color: var(--text-primary);
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+tr:last-child td { border-bottom: none; }
+
+/* ===================================================================
+   Utility classes
+   =================================================================== */
+
+.overline {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.data-label { font-weight: 700; font-size: 14px; color: var(--text-primary); }
+.meta { font-size: 11px; color: var(--text-tertiary); }
+.timestamp { font-size: 12px; color: var(--text-tertiary); }
+
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  padding: 24px 28px;
+}
+
+/* form styles */
+.form-group { display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+.form-label { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.form-label.is-disabled { opacity: 0.5; }
+.form-input {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.form-input::placeholder { color: var(--text-tertiary); }
+.form-input:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-input.has-error { border-color: var(--color-amber); }
+.form-helper { font-size: 12px; color: var(--text-tertiary); margin: 0; }
+.form-error-text { font-size: 12px; color: var(--color-amber); font-weight: 600; margin: 0; }
